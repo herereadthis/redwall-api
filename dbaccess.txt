@@ -1,0 +1,9 @@
+<?php
+
+$db_internal = "internal-host";
+$db_external = "external-host";
+$db_database = "database";
+$db_username = "username";
+$db_password = "password";
+
+?>
