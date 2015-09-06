@@ -37,6 +37,27 @@ $app = new \Slim\Slim();
 $app->get(
     '/',
     function () {
+        $template = <<<EOT
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8"/>
+            <title>Slim Framework for PHP 5</title>
+        </head>
+        <body>
+            <p>Hello World</p>
+        </body>
+    </html>
+EOT;
+        echo $template;
+    }
+);
+
+
+// GET route
+$app->get(
+    '/template',
+    function () {
         $template = require('template.html');
         echo $template;
     }
