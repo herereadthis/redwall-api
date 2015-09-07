@@ -1,5 +1,10 @@
 <?php
 
+
+// see access_keys.txt for sample
+require("./dbaccess.php");
+require("./includes/get_hostname.php");
+
 // test locally: $ php -S localhost:8000
 
 /**
@@ -58,6 +63,24 @@ $app->get('/banner-image','getBannerImage');
 
 
 function getBannerImage() {
+// $sql = "SELECT user_id,username,name,profile_pic FROM users ORDER BY user_id DESC";
+
+try {
+  # MySQL with PDO_MYSQL
+  $db = new PDO("mysql:host=$db_hostname;dbname=$db_database;charset=utf8", $db_username, $db_password);
+}
+catch(PDOException $e) {
+    echo "<p>PDO ERROR: ".$e->getMessage()."</p>";
+}
+
+    // prepare PDO
+    // return the object with lowest hits as first result
+    $get_objects=$db->prepare("SELECT * FROM `banner_image`;");
+    // $get_objects=$db->prepare("SELECT * FROM `banner_image` ORDER BY `hits` ASC;");
+    // execute
+    $get_objects->execute();
+    // fetch results as array
+    $json_results=$get_objects->fetchAll(PDO::FETCH_ASSOC);
 
 }
 
