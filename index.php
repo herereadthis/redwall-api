@@ -1,6 +1,6 @@
 <?php
 
-// test locally: $ php -S calhost:8000
+// test locally: $ php -S localhost:8000
 
 /**
  * Step 1: Require the Slim Framework
@@ -37,18 +37,7 @@ $app = new \Slim\Slim();
 $app->get(
     '/',
     function () {
-        $template = <<<EOT
-<!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="utf-8"/>
-            <title>Slim Framework for PHP 5</title>
-        </head>
-        <body>
-            <p>Hello World</p>
-        </body>
-    </html>
-EOT;
+        $template = require('index_page.php');
         echo $template;
     }
 );
@@ -58,10 +47,25 @@ EOT;
 $app->get(
     '/template',
     function () {
-        $template = require('template.html');
+        $template = require('template.php');
         echo $template;
     }
 );
+
+
+$app->get('/banner-image','getBannerImage');
+
+
+
+function getBannerImage() {
+
+}
+
+
+
+
+
+
 
 // POST route
 $app->post(
